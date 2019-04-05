@@ -5,9 +5,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <TextView
-            android:id="@+id/tvGo"
-            android:text="Go go gadget go"
+    <ProgressBar
+            android:id="@+id/pbLoading"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
