@@ -15,5 +15,6 @@
         </activity>
         <activity android:name=".articles.ui.activities.ArticleActivity"/>
         <activity android:name=".settings.ui.activities.SettingsActivity"/>
+        <activity android:name=".articlepicker.ui.activities.PickerActivity"/>
     </application>
 </manifest>

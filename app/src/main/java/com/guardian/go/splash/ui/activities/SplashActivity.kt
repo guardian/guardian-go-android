@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import com.guardian.go.R
+import com.guardian.go.articlepicker.ui.activities.PickerActivity
 import com.guardian.go.articles.ui.activities.ArticleActivity
 import com.guardian.go.darkmode.DarkModeActivity
 import com.guardian.go.settings.ui.activities.SettingsActivity
@@ -38,6 +39,11 @@ class SplashActivity : DarkModeActivity() {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivityForResult(intent, REQUEST_NIGHT_MODE)
         }
+        bPicker.setOnClickListener {
+            val intent = Intent(this, PickerActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
