@@ -14,4 +14,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+
+    <Button
+            android:id="@+id/bArticle"
+            android:text="Article Screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
