@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.guardian.go.R
 import com.guardian.go.articles.ui.activities.ArticleActivity
+import com.guardian.go.settings.ui.activities.SettingsActivity
 import com.guardian.go.splash.ui.viewmodels.SplashViewModel
 import kotlinx.android.synthetic.main.activity_splash.*
 
@@ -31,6 +32,10 @@ class SplashActivity : AppCompatActivity() {
 
         bArticle.setOnClickListener {
             val intent = Intent(this, ArticleActivity::class.java)
+            startActivity(intent)
+        }
+        bSettings.setOnClickListener {
+            val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
     }

@@ -14,5 +14,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".articles.ui.activities.ArticleActivity"/>
+        <activity android:name=".settings.ui.activities.SettingsActivity"/>
     </application>
 </manifest>
