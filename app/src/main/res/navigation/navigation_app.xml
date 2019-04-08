@@ -1,25 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/navigation_app" app:startDestination="@id/splashFragment">
-    <fragment android:id="@+id/splashFragment" android:name="com.guardian.go.splash.ui.fragments.SplashFragment"
-              android:label="SplashFragment">
-        <action android:id="@+id/action_splash_toHome" app:destination="@id/homeFragment"
-                app:popUpTo="@+id/splashFragment" app:popUpToInclusive="true"/>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/navigation_app"
+        app:startDestination="@id/splashFragment">
+    <fragment
+            android:id="@+id/splashFragment"
+            android:name="com.guardian.go.splash.ui.fragments.SplashFragment"
+            android:label="SplashFragment"
+            tools:layout="@layout/fragment_splash">
+        <action
+                android:id="@+id/action_splash_toHome"
+                app:destination="@id/homeFragment"
+                app:popUpTo="@+id/splashFragment"
+                app:popUpToInclusive="true"/>
     </fragment>
-    <fragment android:id="@+id/homeFragment" android:name="com.guardian.go.home.ui.fragments.HomeFragment"
-              android:label="HomeFragment">
-        <action android:id="@+id/action_home_toPicker" app:destination="@id/pickerFragment"/>
+    <fragment
+            android:id="@+id/homeFragment"
+            android:name="com.guardian.go.home.ui.fragments.HomeFragment"
+            android:label="HomeFragment"
+            tools:layout="@layout/fragment_home">
+        <action android:id="@+id/action_home_toPicker"
+                app:destination="@id/pickerFragment"/>
     </fragment>
-    <fragment android:id="@+id/pickerFragment" android:name="com.guardian.go.articlepicker.ui.fragments.PickerFragment"
-              android:label="PickerFragment">
-        <action android:id="@+id/action_pickerFragment_to_articleFragment" app:destination="@id/articleFragment"/>
+    <fragment
+            android:id="@+id/pickerFragment"
+            android:name="com.guardian.go.articlepicker.ui.fragments.PickerFragment"
+            android:label="PickerFragment"
+            tools:layout="@layout/fragment_picker">
+        <action
+                android:id="@+id/action_pickerFragment_to_articleFragment"
+                app:destination="@id/articleFragment"/>
     </fragment>
-    <fragment android:id="@+id/action_toSettings" android:name="com.guardian.go.settings.ui.fragments.SettingsFragment"
-              android:label="SettingsFragment"/>
-    <fragment android:id="@+id/articleFragment" android:name="com.guardian.go.articles.ui.fragments.ArticleFragment"
-              android:label="ArticleFragment">
-        <argument android:name="content" app:argType="com.guardian.go.articlepicker.data.Content"/>
+    <fragment
+            android:id="@+id/action_toSettings"
+            android:name="com.guardian.go.settings.ui.fragments.SettingsFragment"
+            android:label="SettingsFragment"/>
+    <fragment
+            android:id="@+id/articleFragment"
+            android:name="com.guardian.go.articles.ui.fragments.ArticleFragment"
+            android:label="ArticleFragment"
+            tools:layout="@layout/fragment_article">
+        <argument
+                android:name="content"
+                app:argType="com.guardian.go.articlepicker.data.Content"/>
     </fragment>
-    <action android:id="@+id/action_global_settingsFragment" app:destination="@id/action_toSettings"/>
+    <action
+            android:id="@+id/action_global_settingsFragment"
+            app:destination="@id/action_toSettings"/>
 </navigation>
