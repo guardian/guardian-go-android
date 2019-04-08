@@ -7,13 +7,11 @@
                  android:roundIcon="@mipmap/ic_launcher_round"
                  android:supportsRtl="true"
                  android:theme="@style/AppTheme">
-        <activity android:name=".splash.ui.activities.SplashActivity">
+        <activity android:name=".home.ui.activities.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".articles.ui.activities.ArticleActivity"/>
-        <activity android:name=".settings.ui.activities.SettingsActivity"/>
     </application>
 </manifest>
