@@ -34,10 +34,17 @@ class PickerFragment : Fragment() {
                 loadModel(model)
             }
         })
-        viewModel.init()
+        viewModel.loadArticles()
     }
 
     private fun loadModel(model: PickerViewModel.Model) {
+        if (model.loading) {
+            rvArticles.visibility = View.GONE
+            pbArticlesLoading.visibility = View.VISIBLE
+        } else {
+            rvArticles.visibility = View.VISIBLE
+            pbArticlesLoading.visibility = View.GONE
+        }
         val articles = model.articles
         pickerAdapter.setContent(articles)
     }

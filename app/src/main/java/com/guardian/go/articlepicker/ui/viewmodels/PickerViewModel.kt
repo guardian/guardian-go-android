@@ -5,6 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.guardian.go.articlepicker.data.Content
 import com.guardian.go.articlepicker.data.PickerContentRepository
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 class PickerViewModel(
     private val pickerContentRepository: PickerContentRepository
@@ -14,16 +17,35 @@ class PickerViewModel(
 
     val model: LiveData<Model> = mutableModel
 
-    fun init() {
-        val content = pickerContentRepository.getContent()
+    private val compositeDisposable: CompositeDisposable = CompositeDisposable()
+
+    fun loadArticles() {
         mutableModel.postValue(
             Model(
-                articles = content
+                loading = true
             )
         )
+        compositeDisposable.add(pickerContentRepository
+            .getContent()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { content ->
+                mutableModel.postValue(
+                    Model(
+                        loading = false,
+                        articles = content
+                    )
+                )
+            })
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
     }
 
     data class Model(
-        val articles: List<Content>
+        val loading: Boolean,
+        val articles: List<Content> = listOf()
     )
 }
