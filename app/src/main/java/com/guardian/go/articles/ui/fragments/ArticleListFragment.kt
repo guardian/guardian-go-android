@@ -1,4 +1,4 @@
-package com.guardian.go.articlepicker.ui.fragments
+package com.guardian.go.articles.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,29 +9,31 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guardian.go.R
-import com.guardian.go.articlepicker.data.TestPickerContentRepository
-import com.guardian.go.articlepicker.ui.adapters.PickerAdapter
-import com.guardian.go.articlepicker.ui.viewmodels.PickerViewModel
-import kotlinx.android.synthetic.main.fragment_picker.*
+import com.guardian.go.articles.data.TestPickerContentRepository
+import com.guardian.go.articles.ui.adapters.ArticleListAdapter
+import com.guardian.go.articles.ui.viewmodels.ArticleListViewModel
+import kotlinx.android.synthetic.main.fragment_article_list.*
 
-class PickerFragment : Fragment() {
+class ArticleListFragment : Fragment() {
 
-    private lateinit var viewModel: PickerViewModel
+    private lateinit var viewModel: ArticleListViewModel
 
-    private val pickerAdapter: PickerAdapter = PickerAdapter { content ->
-        findNavController(requireView()).navigate(PickerFragmentDirections.actionPickerFragmentToArticleFragment(content))
+    private val articleListAdapter: ArticleListAdapter = ArticleListAdapter { content ->
+        findNavController(requireView()).navigate(
+            ArticleListFragmentDirections.actionArticleListFragmentToArticleFragment(content)
+        )
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_picker, container, false)
+        return inflater.inflate(R.layout.fragment_article_list, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         rvArticles.layoutManager = LinearLayoutManager(requireContext())
         rvArticles.setHasFixedSize(true)
-        rvArticles.adapter = pickerAdapter
-        viewModel = PickerViewModel(TestPickerContentRepository())
+        rvArticles.adapter = articleListAdapter
+        viewModel = ArticleListViewModel(TestPickerContentRepository())
         viewModel.model.observe(this, Observer { model ->
             if (model != null) {
                 loadModel(model)
@@ -40,7 +42,7 @@ class PickerFragment : Fragment() {
         viewModel.loadArticles()
     }
 
-    private fun loadModel(model: PickerViewModel.Model) {
+    private fun loadModel(model: ArticleListViewModel.Model) {
         if (model.loading) {
             rvArticles.visibility = View.GONE
             pbArticlesLoading.visibility = View.VISIBLE
@@ -49,12 +51,12 @@ class PickerFragment : Fragment() {
             pbArticlesLoading.visibility = View.GONE
         }
         val articles = model.articles
-        pickerAdapter.setContent(articles)
+        articleListAdapter.setContent(articles)
     }
 
     companion object {
-        fun newInstance(): PickerFragment {
-            return PickerFragment()
+        fun newInstance(): ArticleListFragment {
+            return ArticleListFragment()
         }
     }
 }

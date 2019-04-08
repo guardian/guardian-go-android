@@ -1,4 +1,4 @@
-package com.guardian.go.articlepicker.data
+package com.guardian.go.articles.data
 
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit

@@ -24,24 +24,8 @@ class HomeActivity : DarkModeActivity(), NavController.OnDestinationChangedListe
 
     override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {
         when (destination.id) {
-            R.id.splashFragment -> {
-                hideToolbar()
-            }
-            R.id.homeFragment -> {
-                showToolbar()
-            }
-            R.id.pickerFragment -> {
-                showToolbar()
-
-            }
-            R.id.articleFragment -> {
-                showToolbar()
-
-            }
-            R.id.action_toSettings -> {
-                showToolbar()
-
-            }
+            R.id.splashFragment -> hideToolbar()
+            else -> showToolbar()
         }
     }
 

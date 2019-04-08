@@ -1,4 +1,4 @@
-package com.guardian.go.articlepicker.data
+package com.guardian.go.articles.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

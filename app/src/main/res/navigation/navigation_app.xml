@@ -22,15 +22,15 @@
             android:label="HomeFragment"
             tools:layout="@layout/fragment_home">
         <action android:id="@+id/action_home_toPicker"
-                app:destination="@id/pickerFragment"/>
+                app:destination="@id/articleListFragment"/>
     </fragment>
     <fragment
-            android:id="@+id/pickerFragment"
-            android:name="com.guardian.go.articlepicker.ui.fragments.PickerFragment"
-            android:label="PickerFragment"
-            tools:layout="@layout/fragment_picker">
+            android:id="@+id/articleListFragment"
+            android:name="com.guardian.go.articles.ui.fragments.ArticleListFragment"
+            android:label="ArticleListFragment"
+            tools:layout="@layout/fragment_article_list">
         <action
-                android:id="@+id/action_pickerFragment_to_articleFragment"
+                android:id="@+id/action_articleListFragment_toArticleFragment"
                 app:destination="@id/articleFragment"/>
     </fragment>
     <fragment
@@ -44,7 +44,7 @@
             tools:layout="@layout/fragment_article">
         <argument
                 android:name="content"
-                app:argType="com.guardian.go.articlepicker.data.Content"/>
+                app:argType="com.guardian.go.articles.data.Content"/>
     </fragment>
     <action
             android:id="@+id/action_global_settingsFragment"

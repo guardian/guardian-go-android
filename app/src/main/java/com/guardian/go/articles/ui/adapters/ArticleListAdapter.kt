@@ -1,4 +1,4 @@
-package com.guardian.go.articlepicker.ui.adapters
+package com.guardian.go.articles.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,12 +6,12 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.guardian.go.R
-import com.guardian.go.articlepicker.data.Content
+import com.guardian.go.articles.data.Content
 import kotlinx.android.synthetic.main.item_content.view.*
 
-class PickerAdapter(
+class ArticleListAdapter(
     private val articleClickListener: (Content) -> Unit
-) : RecyclerView.Adapter<PickerAdapter.ContentViewHolder>() {
+) : RecyclerView.Adapter<ArticleListAdapter.ContentViewHolder>() {
 
     private val content: MutableList<Content> = ArrayList()
 

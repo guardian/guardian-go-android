@@ -1,15 +1,15 @@
-package com.guardian.go.articlepicker.ui.viewmodels
+package com.guardian.go.articles.ui.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.guardian.go.articlepicker.data.Content
-import com.guardian.go.articlepicker.data.PickerContentRepository
+import com.guardian.go.articles.data.Content
+import com.guardian.go.articles.data.PickerContentRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
-class PickerViewModel(
+class ArticleListViewModel(
     private val pickerContentRepository: PickerContentRepository
 ) : ViewModel() {
 
