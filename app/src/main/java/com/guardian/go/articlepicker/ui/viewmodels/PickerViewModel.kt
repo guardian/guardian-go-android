@@ -20,23 +20,25 @@ class PickerViewModel(
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     fun loadArticles() {
-        mutableModel.postValue(
-            Model(
-                loading = true
-            )
-        )
-        compositeDisposable.add(pickerContentRepository
-            .getContent()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { content ->
-                mutableModel.postValue(
-                    Model(
-                        loading = false,
-                        articles = content
-                    )
+        if (model.value == null) {
+            mutableModel.postValue(
+                Model(
+                    loading = true
                 )
-            })
+            )
+            compositeDisposable.add(pickerContentRepository
+                .getContent()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { content ->
+                    mutableModel.postValue(
+                        Model(
+                            loading = false,
+                            articles = content
+                        )
+                    )
+                })
+        }
     }
 
     override fun onCleared() {

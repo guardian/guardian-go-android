@@ -18,6 +18,8 @@
     <fragment android:id="@+id/action_toSettings" android:name="com.guardian.go.settings.ui.fragments.SettingsFragment"
               android:label="SettingsFragment"/>
     <fragment android:id="@+id/articleFragment" android:name="com.guardian.go.articles.ui.fragments.ArticleFragment"
-              android:label="ArticleFragment"/>
+              android:label="ArticleFragment">
+        <argument android:name="content" app:argType="com.guardian.go.articlepicker.data.Content"/>
+    </fragment>
     <action android:id="@+id/action_global_settingsFragment" app:destination="@id/action_toSettings"/>
 </navigation>

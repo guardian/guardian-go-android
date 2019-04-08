@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guardian.go.R
 import com.guardian.go.articlepicker.data.TestPickerContentRepository
@@ -17,7 +18,9 @@ class PickerFragment : Fragment() {
 
     private lateinit var viewModel: PickerViewModel
 
-    private val pickerAdapter: PickerAdapter = PickerAdapter()
+    private val pickerAdapter: PickerAdapter = PickerAdapter { content ->
+        findNavController(requireView()).navigate(PickerFragmentDirections.actionPickerFragmentToArticleFragment(content))
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_picker, container, false)

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.navigation.Navigation.findNavController
 import com.guardian.go.R
+import com.guardian.go.settings.ui.fragments.SettingsFragmentDirections
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
@@ -16,7 +17,6 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        bSettings.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_toSettings))
         bPicker.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_home_toPicker))
         setHasOptionsMenu(true)
     }
@@ -29,7 +29,7 @@ class HomeFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.action_settings -> {
-                findNavController(requireView()).navigate(R.id.action_toSettings)
+                findNavController(requireView()).navigate(SettingsFragmentDirections.actionGlobalSettingsFragment())
                 true
             }
             else -> super.onOptionsItemSelected(item)

@@ -3,6 +3,7 @@ package com.guardian.go.articles.ui.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.guardian.go.articlepicker.data.Content
 
 class ArticleViewModel : ViewModel() {
 
@@ -13,15 +14,17 @@ class ArticleViewModel : ViewModel() {
     /**
      * Load any data required for loading.
      */
-    fun load() {
+    fun loadContent(content: Content) {
         mutableModel.postValue(
             Model(
-                isLoading = true
+                isLoading = false,
+                url = content.url
             )
         )
     }
 
     data class Model(
-        val isLoading: Boolean
+        val isLoading: Boolean,
+        val url: String
     )
 }
