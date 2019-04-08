@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/navigation_app" app:startDestination="@id/splashFragment">
+    <fragment android:id="@+id/splashFragment" android:name="com.guardian.go.splash.ui.fragments.SplashFragment"
+              android:label="SplashFragment">
+        <action android:id="@+id/action_splash_toHome" app:destination="@id/homeFragment"/>
+    </fragment>
+    <fragment android:id="@+id/homeFragment" android:name="com.guardian.go.home.ui.fragments.HomeFragment"
+              android:label="HomeFragment">
+        <action android:id="@+id/action_home_toPicker" app:destination="@id/pickerFragment"/>
+        <action android:id="@+id/action_home_toSettings" app:destination="@id/settingsFragment"/>
+    </fragment>
+    <fragment android:id="@+id/pickerFragment" android:name="com.guardian.go.articlepicker.ui.fragments.PickerFragment"
+              android:label="PickerFragment">
+        <action android:id="@+id/action_pickerFragment_to_articleFragment" app:destination="@id/articleFragment"/>
+    </fragment>
+    <fragment android:id="@+id/settingsFragment" android:name="com.guardian.go.settings.ui.fragments.SettingsFragment"
+              android:label="SettingsFragment"/>
+    <fragment android:id="@+id/articleFragment" android:name="com.guardian.go.articles.ui.fragments.ArticleFragment"
+              android:label="ArticleFragment"/>
+</navigation>
