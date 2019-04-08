@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guardian.go.R
-import com.guardian.go.articles.data.TestPickerContentRepository
+import com.guardian.go.articles.data.TestArticleListRepository
 import com.guardian.go.articles.ui.adapters.ArticleListAdapter
 import com.guardian.go.articles.ui.viewmodels.ArticleListViewModel
 import kotlinx.android.synthetic.main.fragment_article_list.*
@@ -33,7 +33,7 @@ class ArticleListFragment : Fragment() {
         rvArticles.layoutManager = LinearLayoutManager(requireContext())
         rvArticles.setHasFixedSize(true)
         rvArticles.adapter = articleListAdapter
-        viewModel = ArticleListViewModel(TestPickerContentRepository())
+        viewModel = ArticleListViewModel(TestArticleListRepository())
         viewModel.model.observe(this, Observer { model ->
             if (model != null) {
                 loadModel(model)

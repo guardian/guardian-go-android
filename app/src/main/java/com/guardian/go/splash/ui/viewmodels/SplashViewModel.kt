@@ -3,11 +3,16 @@ package com.guardian.go.splash.ui.viewmodels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.guardian.go.time.ui.data.TimeRepository
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-class SplashViewModel : ViewModel() {
+class SplashViewModel(
+    private val timeRepository: TimeRepository
+) : ViewModel() {
 
     private val mutableModel: MutableLiveData<Model> = MutableLiveData()
 
@@ -24,9 +29,13 @@ class SplashViewModel : ViewModel() {
                 isLoading = true
             )
         )
-        compositeDisposable.add(Single.just(1).delay(1, TimeUnit.SECONDS).subscribe { value ->
-            mutableModel.postValue(Model(isLoading = false))
-        })
+        compositeDisposable.add(Single.fromCallable(timeRepository::isTime)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .delay(1, TimeUnit.SECONDS)
+            .subscribe { isTime ->
+                mutableModel.postValue(Model(isLoading = false, isTime = isTime))
+            })
     }
 
     override fun onCleared() {
@@ -35,6 +44,7 @@ class SplashViewModel : ViewModel() {
     }
 
     data class Model(
-        val isLoading: Boolean
+        val isLoading: Boolean,
+        val isTime: Boolean = false
     )
 }

@@ -1,6 +1,7 @@
 package com.guardian.go.splash.ui.fragments
 
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation.findNavController
 import com.guardian.go.R
 import com.guardian.go.splash.ui.viewmodels.SplashViewModel
+import com.guardian.go.time.ui.data.SharedPreferencesTimeRepository
 import kotlinx.android.synthetic.main.fragment_splash.*
 
 class SplashFragment : Fragment() {
@@ -25,14 +27,19 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController(view)
-        splashViewModel = SplashViewModel()
+        splashViewModel =
+            SplashViewModel(SharedPreferencesTimeRepository(PreferenceManager.getDefaultSharedPreferences(requireContext())))
         splashViewModel.model.observe(this, Observer { model ->
             if (model != null) {
                 if (model.isLoading) {
                     pbLoading.visibility = View.VISIBLE
                 } else {
                     pbLoading.visibility = View.GONE
-                    navController.navigate(R.id.action_splash_toHome)
+                    if (model.isTime) {
+                        navController.navigate(SplashFragmentDirections.actionSplashToHome())
+                    } else {
+                        navController.navigate(SplashFragmentDirections.actionSplashFragmentToTimePickerFragment())
+                    }
                 }
             }
         })
