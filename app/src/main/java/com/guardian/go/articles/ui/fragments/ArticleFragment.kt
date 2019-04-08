@@ -12,7 +12,7 @@ import com.guardian.go.articles.ui.viewmodels.ArticleViewModel
 
 class ArticleFragment : Fragment() {
 
-    private lateinit var splashViewModel: ArticleViewModel
+    private lateinit var articleViewModel: ArticleViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_article, container, false)
@@ -20,8 +20,8 @@ class ArticleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        splashViewModel = ViewModelProviders.of(this).get(ArticleViewModel::class.java)
-        splashViewModel.model.observe(this, Observer { model ->
+        articleViewModel = ViewModelProviders.of(this).get(ArticleViewModel::class.java)
+        articleViewModel.model.observe(this, Observer { model ->
             if (model != null) {
 
             }
