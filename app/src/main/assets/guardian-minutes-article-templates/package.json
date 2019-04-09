@@ -1,0 +1,55 @@
+{
+  "_from": "guardian-minutes-article-templates",
+  "_id": "guardian-minutes-article-templates@0.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-Z/EaWL0Uy6j18r6HHRnuq3uPZNSql+Gw9qmBJB5uOLKnZ5N4EkFQhdDNBgVJSmxFdnthc8ah4seUCC+av4fxQg==",
+  "_location": "/guardian-minutes-article-templates",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "guardian-minutes-article-templates",
+    "name": "guardian-minutes-article-templates",
+    "escapedName": "guardian-minutes-article-templates",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/guardian-minutes-article-templates/-/guardian-minutes-article-templates-0.0.2.tgz",
+  "_shasum": "8f38c89317509de5f5534f165c97eb862914af99",
+  "_spec": "guardian-minutes-article-templates",
+  "_where": "/Users/Jordan_Terry/NpmStuff",
+  "bundleDependencies": false,
+  "dependencies": {
+    "components": "^0.1.0",
+    "parcel-bundler": "^1.12.3",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  },
+  "deprecated": false,
+  "description": "Mobile app templates",
+  "devDependencies": {
+    "jquery": "^3.3.1",
+    "jsdom": "^14.0.0",
+    "ncp": "^2.0.0"
+  },
+  "keywords": [
+    "News",
+    "Journalism",
+    "Guardian",
+    "App",
+    "React"
+  ],
+  "main": "index.js",
+  "name": "guardian-minutes-article-templates",
+  "scripts": {
+    "build": "rm -rf build/ && parcel build ./ArticleTemplates/*.html -d build && node processHTML.js",
+    "dev": "rm -rf build/ && parcel ./ArticleTemplates/*.html -d build",
+    "test": "jest"
+  },
+  "version": "0.0.2"
+}

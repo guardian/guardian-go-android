@@ -1,5 +1,6 @@
 package com.guardian.go.articles.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.guardian.go.R
 import com.guardian.go.articles.ui.viewmodels.ArticleViewModel
 import kotlinx.android.synthetic.main.fragment_article.*
+import java.io.File
 
 class ArticleFragment : Fragment() {
 
@@ -33,10 +35,43 @@ class ArticleFragment : Fragment() {
                 } else {
                     pbArticleLoading.visibility = View.GONE
                     wvArticle.visibility = View.VISIBLE
-                    wvArticle.loadUrl(model.url)
+                    wvArticle.loadData(createHtml(model.html), "text/html", "UTF-8")
                 }
             }
         })
         articleViewModel.loadContent(args.content)
     }
+
+
+    private fun createHtml(html: String): String {
+        val wrapperTemplate = HtmlTemplate.article.getTemplate(requireContext())
+        val templateDir = getTemplateRoot(requireContext()).path
+        // wrapper
+        return wrapperTemplate.replace("__TEMPLATES_DIRECTORY__", "file://$templateDir/")
+            .replace("__ARTICLE_CONTAINER__", createArticleBody(html))
+    }
+
+    private fun createArticleBody(html: String): String {
+        val replacements = HashMap<String, String>()
+        val articleTemplate = HtmlTemplate.articleContainer.getTemplate(requireContext())
+        return articleTemplate.replace("__BODY__", html)
+    }
+}
+
+
+enum class HtmlTemplate(private val templateName: String) {
+    article("articleTemplate.html"),
+    articleContainer("articleTemplateContainer.html");
+
+    fun getTemplate(context: Context): String {
+        return context.assets.open("guardian-minutes-article-templates/build/$templateName").bufferedReader()
+            .use { it.readText() }
+    }
+}
+
+
+fun getTemplateRoot(context: Context): File {
+    val templatesDir = File(context.filesDir, "guardian-minutes-article-templates/build")
+    templatesDir.mkdir()
+    return templatesDir
 }
