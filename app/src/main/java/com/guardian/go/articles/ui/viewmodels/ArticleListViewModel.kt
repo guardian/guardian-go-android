@@ -4,13 +4,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.guardian.go.articles.data.Content
-import com.guardian.go.articles.data.PickerContentRepository
+import com.guardian.go.articles.data.ArticleListRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class ArticleListViewModel(
-    private val pickerContentRepository: PickerContentRepository
+    private val articleListRepository: ArticleListRepository
 ) : ViewModel() {
 
     private val mutableModel: MutableLiveData<Model> = MutableLiveData()
@@ -26,7 +26,7 @@ class ArticleListViewModel(
                     loading = true
                 )
             )
-            compositeDisposable.add(pickerContentRepository
+            compositeDisposable.add(articleListRepository
                 .getContent()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

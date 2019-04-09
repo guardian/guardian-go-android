@@ -27,7 +27,14 @@ class ArticleFragment : Fragment() {
         articleViewModel = ViewModelProviders.of(this).get(ArticleViewModel::class.java)
         articleViewModel.model.observe(this, Observer { model ->
             if (model != null) {
-                wvArticle.loadUrl(model.url)
+                if (model.isLoading) {
+                    pbArticleLoading.visibility = View.VISIBLE
+                    wvArticle.visibility = View.GONE
+                } else {
+                    pbArticleLoading.visibility = View.GONE
+                    wvArticle.visibility = View.VISIBLE
+                    wvArticle.loadUrl(model.url)
+                }
             }
         })
         articleViewModel.loadContent(args.content)

@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.preference.PreferenceScreen
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:android="http://schemas.android.com/apk/res/android">
 
     <SwitchPreferenceCompat
             app:key="pref_dark_mode"
             app:title="Dark mode"
             app:summaryOff="Enable dark mode"
             app:summaryOn="Disable dark mode"/>
+
+    <PreferenceCategory
+            android:title="Scheduling">
+        <Preference
+                android:key="pref_schedule_time"
+                android:title="Download Time"/>
+    </PreferenceCategory>
 
 </androidx.preference.PreferenceScreen>

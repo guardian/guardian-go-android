@@ -1,16 +1,16 @@
-package com.guardian.go.splash.ui.viewmodels
+package com.guardian.go.settings.ui.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.guardian.go.time.ui.data.Time
 import com.guardian.go.time.ui.data.TimeRepository
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
 
-class SplashViewModel(
+class SettingsViewModel(
     private val timeRepository: TimeRepository
 ) : ViewModel() {
 
@@ -20,21 +20,16 @@ class SplashViewModel(
 
     private val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
-    /**
-     * Load any data required for loading.
-     */
     fun load() {
-        mutableModel.postValue(
-            Model(
-                isLoading = true
-            )
-        )
-        compositeDisposable.add(Single.fromCallable(timeRepository::isTime)
+        compositeDisposable.add(Single.fromCallable(timeRepository::getTime)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .delay(1, TimeUnit.SECONDS)
-            .subscribe { isTime ->
-                mutableModel.postValue(Model(isLoading = false, isTime = isTime))
+            .subscribe { time ->
+                mutableModel.postValue(
+                    Model(
+                        time = time
+                    )
+                )
             })
     }
 
@@ -43,8 +38,17 @@ class SplashViewModel(
         compositeDisposable.clear()
     }
 
+    fun saveTime(hourOfDay: Int, minute: Int) {
+        val time = Time(hourOfDay, minute)
+        timeRepository.saveTime(time)
+        mutableModel.postValue(
+            Model(
+                time = time
+            )
+        )
+    }
+
     data class Model(
-        val isLoading: Boolean,
-        val isTime: Boolean = false
+        val time: Time
     )
 }

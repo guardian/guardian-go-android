@@ -3,12 +3,12 @@ package com.guardian.go.articles.data
 import io.reactivex.Single
 import java.util.concurrent.TimeUnit
 
-interface PickerContentRepository {
+interface ArticleListRepository {
 
     fun getContent(): Single<List<Content>>
 }
 
-class TestPickerContentRepository : PickerContentRepository {
+class TestArticleListRepository : ArticleListRepository {
     override fun getContent(): Single<List<Content>> {
         return Single.just(
             listOf(
