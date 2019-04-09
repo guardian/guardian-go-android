@@ -38,8 +38,8 @@ class SettingsViewModel(
         compositeDisposable.clear()
     }
 
-    fun saveTime(hourOfDay: Int, minute: Int) {
-        val time = Time(hourOfDay, minute)
+    fun saveTime(minutes: Int) {
+        val time = Time(minutes)
         timeRepository.saveTime(time)
         mutableModel.postValue(
             Model(

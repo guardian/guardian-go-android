@@ -22,8 +22,8 @@ class TimePickerViewModel(
         )
     }
 
-    fun saveTime(hour: Int, minute: Int) {
-        val time = Time(hour, minute)
+    fun saveTime(minutes: Int) {
+        val time = Time(minutes)
         timeRepository.saveTime(time)
         mutableModel.postValue(
             Model(
