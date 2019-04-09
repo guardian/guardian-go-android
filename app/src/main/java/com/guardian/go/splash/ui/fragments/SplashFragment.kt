@@ -35,11 +35,12 @@ class SplashFragment : Fragment() {
                     pbLoading.visibility = View.VISIBLE
                 } else {
                     pbLoading.visibility = View.GONE
-                    if (model.isTime) {
-                        navController.navigate(SplashFragmentDirections.actionSplashToHome())
-                    } else {
-                        navController.navigate(SplashFragmentDirections.actionSplashFragmentToTimePickerFragment())
-                    }
+//                    if (model.isTime) {
+//                        navController.navigate(SplashFragmentDirections.actionSplashToHome())
+//                    } else {
+//                        navController.navigate(SplashFragmentDirections.actionSplashFragmentToTimePickerFragment())
+//                    }
+                    navController.navigate(SplashFragmentDirections.actionSplashFragmentToTimePickerFragment())
                 }
             }
         })

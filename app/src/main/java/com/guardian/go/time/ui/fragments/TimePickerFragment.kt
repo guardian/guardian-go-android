@@ -3,7 +3,10 @@ package com.guardian.go.time.ui.fragments
 import android.app.TimePickerDialog
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.*
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.TimePicker
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -38,6 +41,26 @@ class TimePickerFragment : Fragment(), TimePickerDialog.OnTimeSetListener {
             }
         })
         timePickerViewModel.load()
+        tvCommuteDuration.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                // Empty.
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // Empty.
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                val multiplier = if (count == 1) 1 else -1
+                vCircular
+                    .animate()
+                    .setInterpolator(AccelerateDecelerateInterpolator())
+                    .rotationBy(multiplier * 25f)
+                    .setDuration(500)
+                    .start()
+            }
+
+        })
         bSetDuration.setOnClickListener {
             timePickerDialog.show()
         }
