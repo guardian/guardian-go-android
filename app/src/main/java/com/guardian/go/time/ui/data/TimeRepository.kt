@@ -22,21 +22,19 @@ class SharedPreferencesTimeRepository(
 
     override fun saveTime(time: Time) {
         sharedPreferences.edit().apply {
-            putInt(TIME_KEY_HOUR, time.hour)
-            putInt(TIME_KEY_MINUTE, time.minute)
+            putInt(TIME_KEY_MINUTES, time.minutes)
         }.apply()
     }
 
     override fun isTime(): Boolean {
-        return sharedPreferences.contains(TIME_KEY_HOUR) && sharedPreferences.contains(TIME_KEY_MINUTE)
+        return sharedPreferences.contains(TIME_KEY_MINUTES)
     }
 
     override fun getTime(): Time {
-        return Time(sharedPreferences.getInt(TIME_KEY_HOUR, 0), sharedPreferences.getInt(TIME_KEY_MINUTE, 0))
+        return Time(sharedPreferences.getInt(TIME_KEY_MINUTES, 0))
     }
 
     companion object {
-        const val TIME_KEY_HOUR = "TIME_KEY_HOUR"
-        const val TIME_KEY_MINUTE = "TIME_KEY_MINUTE"
+        const val TIME_KEY_MINUTES = "TIME_KEY_MINUTE"
     }
 }

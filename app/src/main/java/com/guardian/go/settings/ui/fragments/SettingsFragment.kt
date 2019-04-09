@@ -1,8 +1,6 @@
 package com.guardian.go.settings.ui.fragments
 
-import android.app.TimePickerDialog
 import android.os.Bundle
-import android.widget.TimePicker
 import androidx.lifecycle.Observer
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -11,15 +9,12 @@ import com.guardian.go.R
 import com.guardian.go.settings.ui.viewmodel.SettingsViewModel
 import com.guardian.go.time.ui.data.SharedPreferencesTimeRepository
 
-class SettingsFragment : PreferenceFragmentCompat(), TimePickerDialog.OnTimeSetListener {
+class SettingsFragment : PreferenceFragmentCompat() {
 
     private lateinit var settingsViewModel: SettingsViewModel
 
-    private lateinit var timePickerDialog: TimePickerDialog
-
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.preferences, rootKey)
-        timePickerDialog = TimePickerDialog(requireContext(), this, 0, 0, true)
         settingsViewModel = SettingsViewModel(
             SharedPreferencesTimeRepository(
                 PreferenceManager.getDefaultSharedPreferences(
@@ -29,9 +24,6 @@ class SettingsFragment : PreferenceFragmentCompat(), TimePickerDialog.OnTimeSetL
         )
         settingsViewModel.model.observe(this, Observer { model ->
             if (model != null) {
-                findPreference("pref_schedule_time").summary =
-                    String.format("%02d:%02d", model.time.hour, model.time.minute)
-                timePickerDialog = TimePickerDialog(requireContext(), this, model.time.hour, model.time.minute, true)
             }
         })
         settingsViewModel.load()
@@ -41,13 +33,7 @@ class SettingsFragment : PreferenceFragmentCompat(), TimePickerDialog.OnTimeSetL
             }
             true
         }
-        findPreference("pref_schedule_time").setOnPreferenceClickListener {
-            timePickerDialog.show()
-            true
-        }
+
     }
 
-    override fun onTimeSet(view: TimePicker?, hourOfDay: Int, minute: Int) {
-        settingsViewModel.saveTime(hourOfDay, minute)
-    }
 }

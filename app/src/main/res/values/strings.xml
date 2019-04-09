@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Guardian Go</string>
+    <string name="how_much_time_do_you_have">How much\ntime do\nyou have?</string>
 </resources>
