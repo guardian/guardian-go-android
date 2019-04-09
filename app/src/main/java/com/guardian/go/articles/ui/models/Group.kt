@@ -7,7 +7,7 @@ import java.util.*
 class Group @JsonCreator constructor(
     @param:JsonProperty("id") val id: String,
     @param:JsonProperty("title") val title: String,
-    @JsonProperty("cards") cards: kotlin.collections.List<Card>,
+    @JsonProperty("cards") cards: List<Card>,
     //@param:JsonProperty("followUp") val followUp: FollowUp? = null,
     //@JsonProperty("style") style: Style? = null,
     //@param:JsonProperty("personalization") val personalisation: Personalisation? = null,
