@@ -34,6 +34,14 @@ class ArticleFragment : Fragment() {
                     wvArticle.visibility = View.GONE
                 } else {
                     pbArticleLoading.visibility = View.GONE
+                    wvArticle.settings.setJavaScriptEnabled(true);
+                    wvArticle.settings.setDomStorageEnabled(true);
+                    wvArticle.settings.setLoadWithOverviewMode(true);
+                    wvArticle.settings.setUseWideViewPort(true);
+                    wvArticle.settings.setBuiltInZoomControls(true);
+                    wvArticle.settings.setDisplayZoomControls(false);
+                    wvArticle.settings.setSupportZoom(true);
+                    wvArticle.settings.setDefaultTextEncodingName("utf-8");
                     wvArticle.visibility = View.VISIBLE
                     wvArticle.loadData(createHtml(model.html), "text/html", "UTF-8")
                 }
@@ -47,7 +55,7 @@ class ArticleFragment : Fragment() {
         val wrapperTemplate = HtmlTemplate.article.getTemplate(requireContext())
         val templateDir = getTemplateRoot(requireContext()).path
         // wrapper
-        return wrapperTemplate.replace("__TEMPLATES_DIRECTORY__", "file://$templateDir/")
+        return wrapperTemplate.replace("__TEMPLATES_DIRECTORY__", "file:///android_asset/guardian-minutes-article-templates/build/")
             .replace("__ARTICLE_CONTAINER__", createArticleBody(html))
     }
 

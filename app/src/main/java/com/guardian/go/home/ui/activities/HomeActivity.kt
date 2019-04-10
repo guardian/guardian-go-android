@@ -2,6 +2,7 @@ package com.guardian.go.home.ui.activities
 
 import android.os.Bundle
 import android.view.View
+import android.webkit.WebView
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
@@ -20,6 +21,7 @@ class HomeActivity : DarkModeActivity(), NavController.OnDestinationChangedListe
         setSupportActionBar(tToolbar)
         navController = findNavController(this, R.id.nav_host_fragment)
         navController.addOnDestinationChangedListener(this)
+        WebView.setWebContentsDebuggingEnabled(true);
     }
 
     override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {

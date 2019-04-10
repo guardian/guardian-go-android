@@ -18,7 +18,7 @@ class ArticleViewModel : ViewModel() {
         mutableModel.postValue(
             Model(
                 isLoading = false,
-                html = "<h1>HELLO</h1>"
+                html = ""
             )
         )
     }
