@@ -9,18 +9,19 @@ import androidx.lifecycle.Observer
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.guardian.go.R
-import com.guardian.go.articles.data.TestArticleListRepository
-import com.guardian.go.articles.ui.adapters.ArticleListAdapter
+import com.guardian.go.articles.data.CodeMapiCardsRepository
+import com.guardian.go.articles.data.TestCardsRepository
+import com.guardian.go.articles.ui.adapters.CardListAdapter
 import com.guardian.go.articles.ui.viewmodels.ArticleListViewModel
 import kotlinx.android.synthetic.main.fragment_article_list.*
 
-class ArticleListFragment : Fragment() {
+class CardListFragment : Fragment() {
 
     private lateinit var viewModel: ArticleListViewModel
 
-    private val articleListAdapter: ArticleListAdapter = ArticleListAdapter { content ->
+    private val cardListAdapter: CardListAdapter = CardListAdapter { content ->
         findNavController(requireView()).navigate(
-            ArticleListFragmentDirections.actionArticleListFragmentToArticleFragment(content)
+            CardListFragmentDirections.actionArticleListFragmentToArticleFragment(TODO())
         )
     }
 
@@ -32,8 +33,8 @@ class ArticleListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         rvArticles.layoutManager = LinearLayoutManager(requireContext())
         rvArticles.setHasFixedSize(true)
-        rvArticles.adapter = articleListAdapter
-        viewModel = ArticleListViewModel(TestArticleListRepository())
+        rvArticles.adapter = cardListAdapter
+        viewModel = ArticleListViewModel(CodeMapiCardsRepository(requireContext()))
         viewModel.model.observe(this, Observer { model ->
             if (model != null) {
                 loadModel(model)
@@ -50,13 +51,12 @@ class ArticleListFragment : Fragment() {
             rvArticles.visibility = View.VISIBLE
             pbArticlesLoading.visibility = View.GONE
         }
-        val articles = model.articles
-        articleListAdapter.setContent(articles)
+        cardListAdapter.submitList(model.cards)
     }
 
     companion object {
-        fun newInstance(): ArticleListFragment {
-            return ArticleListFragment()
+        fun newInstance(): CardListFragment {
+            return CardListFragment()
         }
     }
 }

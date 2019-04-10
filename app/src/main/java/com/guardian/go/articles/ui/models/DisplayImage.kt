@@ -11,8 +11,8 @@ data class DisplayImage @JsonCreator constructor(
     @param:JsonProperty("caption") val caption: String?,
     @param:JsonProperty("credit") val credit: String?,
     @param:JsonProperty("altText") val altText: String?,
-    @param:JsonProperty("cleanCaption") val cleanCaption: String,
-    @param:JsonProperty("cleanCredit") val cleanCredit: String
+    @param:JsonProperty("cleanCaption") val cleanCaption: String?,
+    @param:JsonProperty("cleanCredit") val cleanCredit: String?
 ) {
     private val _urlTemplate = ImageUrlTemplate(urlTemplate)
     val smallUrl get() = _urlTemplate.smallUrl

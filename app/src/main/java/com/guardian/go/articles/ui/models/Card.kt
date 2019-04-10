@@ -1,5 +1,6 @@
 package com.guardian.go.articles.ui.models
 
+import androidx.recyclerview.widget.DiffUtil
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
@@ -17,4 +18,9 @@ constructor(
     @param:JsonProperty("trailText") val trailText: String? = null,
     @param:JsonProperty("mainImage") val mainImage: DisplayImage? = null,
     @param:JsonProperty("cutoutImage") val cutoutImage: DisplayImage? = null
-)
+) {
+    object ItemCallback: DiffUtil.ItemCallback<Card>() {
+        override fun areItemsTheSame(oldItem: Card, newItem: Card) = oldItem.item.id == newItem.item.id
+        override fun areContentsTheSame(oldItem: Card, newItem: Card) = oldItem == newItem
+    }
+}

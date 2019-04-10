@@ -28,7 +28,7 @@
     </fragment>
     <fragment
             android:id="@+id/articleListFragment"
-            android:name="com.guardian.go.articles.ui.fragments.ArticleListFragment"
+            android:name="com.guardian.go.articles.ui.fragments.CardListFragment"
             android:label="ArticleListFragment"
             tools:layout="@layout/fragment_article_list">
         <action
