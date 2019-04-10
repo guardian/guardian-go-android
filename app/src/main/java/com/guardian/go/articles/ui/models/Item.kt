@@ -30,7 +30,7 @@ constructor(
     @param:JsonProperty("links") val links: Links,
     //@param:JsonProperty("metadata") val metadata: Metadata,
     //@JsonProperty("style") style: Style,
-    //@param:JsonProperty("palette") val palette: Palette,
+    @param:JsonProperty("palette") val palette: Palette,
     //@param:JsonProperty("footballContent") val footballContent: FootballMatch? = null,
     //@param:JsonProperty("cricketContent") val cricketContent: CricketContent? = null,
     //@param:JsonProperty("video") val video: Video? = null,

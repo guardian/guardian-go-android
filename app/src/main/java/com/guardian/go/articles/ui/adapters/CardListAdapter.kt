@@ -43,6 +43,8 @@ class CardViewHolder(
     private var currentCard: Card? = null
 
     fun bind(card: Card) {
+        //itemView.setBackgroundColor(card.item.palette.elementBackground.parsed)
+        vTopBorder.setBackgroundColor(card.item.palette.linesColour.parsed)
         tvTitle.text = formatTitle(card)
         tvByline.text = card.byline?.title.orEmpty()
         Picasso.get()
