@@ -23,4 +23,6 @@ constructor(
         override fun areItemsTheSame(oldItem: Card, newItem: Card) = oldItem.item.id == newItem.item.id
         override fun areContentsTheSame(oldItem: Card, newItem: Card) = oldItem == newItem
     }
+
+    var isRead: Boolean = false
 }

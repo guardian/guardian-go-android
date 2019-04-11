@@ -7,7 +7,8 @@
     android:background="#ffffff"
     android:layout_marginStart="4dp"
     android:layout_marginEnd="4dp"
-    android:layout_marginBottom="12dp">
+    android:layout_marginBottom="12dp"
+    android:foreground="?android:attr/selectableItemBackground">
 
     <View
         android:id="@+id/vTopBorder"
@@ -66,7 +67,7 @@
         android:fontFamily="@font/guardian_texsan_two_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@id/vBottomShadow"
-        android:textSize="14sp"
+        android:textSize="16sp"
         tools:text="5 mins"
         android:includeFontPadding="true"
         android:paddingStart="6dp"

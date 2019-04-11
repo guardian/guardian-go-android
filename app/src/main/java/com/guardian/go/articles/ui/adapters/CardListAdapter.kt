@@ -1,5 +1,6 @@
 package com.guardian.go.articles.ui.adapters
 
+import android.graphics.Color
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.style.ForegroundColorSpan
@@ -59,8 +60,18 @@ class CardViewHolder(
         Picasso.get()
             .load(card.mainImage?.mediumUrl)
             .into(ivMainImage)
-        val minutes = card.item.readingTime
-        tvReadingTime.text = itemView.context.resources.getQuantityString(R.plurals.minutes, minutes, minutes)
+        if (card.isRead) {
+            tvReadingTime.text = itemView.context.getString(R.string.youve_read_this)
+            tvReadingTime.setBackgroundColor(Color.parseColor("#3db540"))
+            tvReadingTime.setTextColor(Color.WHITE)
+            itemView.alpha = 0.5f
+        } else {
+            val minutes = card.item.readingTime
+            tvReadingTime.text = itemView.context.resources.getQuantityString(R.plurals.minutes, minutes, minutes)
+            tvReadingTime.setBackgroundColor(Color.parseColor("#ffe500"))
+            tvReadingTime.setTextColor(Color.parseColor("#121212"))
+            itemView.alpha = 1.0f
+        }
         currentCard = card
     }
 
@@ -79,6 +90,9 @@ class CardViewHolder(
     }
 
     override fun onClick(v: View?) {
-        currentCard?.let(articleClickListener)
+        currentCard?.let {
+            articleClickListener(it)
+            it.isRead = true
+        }
     }
 }

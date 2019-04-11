@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Guardian Go</string>
     <string name="how_much_time_do_you_have">How much\ntime do\nyou have?</string>
+    <string name="youve_read_this">You\'ve read this</string>
     <plurals name="minutes">
         <item quantity="one">%d min</item>
         <item quantity="other">%d mins</item>
