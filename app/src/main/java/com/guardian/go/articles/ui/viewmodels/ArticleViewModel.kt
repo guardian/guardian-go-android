@@ -18,13 +18,13 @@ class ArticleViewModel : ViewModel() {
         mutableModel.postValue(
             Model(
                 isLoading = false,
-                url = content.url
+                html = ""
             )
         )
     }
 
     data class Model(
         val isLoading: Boolean,
-        val url: String
+        val html: String
     )
 }
