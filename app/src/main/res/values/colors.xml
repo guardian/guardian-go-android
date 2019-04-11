@@ -4,4 +4,8 @@
     <color name="colorPrimaryDark">#091a36</color>
     <color name="colorAccent">#e37e24</color>
     <color name="windowBackground">#091a36</color>
+    <color name="card_background">#ffffff</color>
+    <color name="card_title">#121212</color>
+    <color name="card_list_background">#f6f6f6</color>
+    <color name="toolbar_border">#5a6a91</color>
 </resources>

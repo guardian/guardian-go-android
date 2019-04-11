@@ -17,8 +17,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             tools:listitem="@layout/item_content"
         android:clipToPadding="false"
-        android:padding="8dp"
-        android:background="#f6f6f6"/>
+        android:padding="6dp"
+        android:background="@color/card_list_background"/>
 
     <ProgressBar
             android:id="@+id/pbArticlesLoading"

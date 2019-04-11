@@ -4,10 +4,8 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="#ffffff"
-    android:layout_marginStart="4dp"
-    android:layout_marginEnd="4dp"
-    android:layout_marginBottom="12dp"
+    android:background="@color/card_background"
+    android:layout_margin="6dp"
     android:foreground="?android:attr/selectableItemBackground">
 
     <View
@@ -30,7 +28,7 @@
         tools:text="Brexit / A customs union compromise is in sight"
         android:fontFamily="@font/ghguardianheadline_medium"
         android:textSize="@dimen/card_text"
-        android:textColor="#121212"/>
+        android:textColor="@color/card_title"/>
 
     <TextView
         android:id="@+id/tvByline"

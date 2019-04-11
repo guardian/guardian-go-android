@@ -33,7 +33,7 @@
                     app:layout_constraintBottom_toTopOf="@id/vBorder"/>
             <View
                     android:id="@+id/vBorder"
-                    android:background="#5a6a91"
+                    android:background="@color/toolbar_border"
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
                     app:layout_constraintBottom_toBottomOf="parent"/>
