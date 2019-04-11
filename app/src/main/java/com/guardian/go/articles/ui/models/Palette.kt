@@ -1,8 +1,11 @@
 package com.guardian.go.articles.ui.models
 
+import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Palette constructor(
     val backgroundColour: ApiColour,
     val pillarColour: ApiColour,
@@ -14,7 +17,7 @@ data class Palette constructor(
     val shadowColour: ApiColour,
     val immersiveKicker: ApiColour,
     val secondaryColour: ApiColour
-) {
+) : Parcelable {
     @JsonCreator constructor(
         @JsonProperty("background") background: String?,
         @JsonProperty("pillar") pillar: String?,

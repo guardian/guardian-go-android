@@ -1,7 +1,10 @@
 package com.guardian.go.articles.ui.models
 
+import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.android.parcel.IgnoredOnParcel
+import kotlinx.android.parcel.Parcelize
 import java.util.*
 
 @Deprecated("Just use modified ArticleItem in this project")
@@ -14,6 +17,7 @@ constructor(
     @param:JsonProperty("style") val style: Style? = null
 )
 
+@Parcelize
 data class ArticleItem @JsonCreator
 constructor(
     @param:JsonProperty("type") val type: String,
@@ -46,11 +50,12 @@ constructor(
     //@param:JsonProperty("headerVideo") val headerVideo: Video? = null,
     //@param:JsonProperty("branding") val branding: Branding? = null,
     //@param:JsonProperty("headerAtom") val headerAtom: String? = null,
-    @param:JsonProperty("editedTrailText") val editedTrailText: String? = null,
+    @param:JsonProperty("editedTrailText") val editedTrailText: String? = null
     //@param:JsonProperty("atoms") val atoms: Array<Atom>? = null,
-    @param:JsonProperty("pillar") val pillar: Pillar? = null
+    //@param:JsonProperty("pillar") val pillar: Pillar? = null
     //@param:JsonProperty("atomsCSS") val atomsCSS: Array<String>? = null,
     //@param:JsonProperty("atomsJS") val atomsJS: Array<String>? = null
-) {
+) : Parcelable {
+    @IgnoredOnParcel
     val readingTime = body?.count { it == ' ' }?.div(200) ?: 0
 }

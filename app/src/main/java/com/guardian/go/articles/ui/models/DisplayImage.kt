@@ -1,8 +1,11 @@
 package com.guardian.go.articles.ui.models
 
+import android.os.Parcelable
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class DisplayImage @JsonCreator constructor(
     @param:JsonProperty("urlTemplate") val urlTemplate: String,
     @param:JsonProperty("height") val height: Int,
@@ -13,7 +16,7 @@ data class DisplayImage @JsonCreator constructor(
     @param:JsonProperty("altText") val altText: String?,
     @param:JsonProperty("cleanCaption") val cleanCaption: String?,
     @param:JsonProperty("cleanCredit") val cleanCredit: String?
-) {
+) : Parcelable {
     private val _urlTemplate = ImageUrlTemplate(urlTemplate)
     val smallUrl get() = _urlTemplate.smallUrl
     val mediumUrl get() = _urlTemplate.mediumUrl
