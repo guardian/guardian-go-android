@@ -2,11 +2,7 @@ package com.guardian.go.time.ui.fragments
 
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -37,26 +33,44 @@ class TimePickerFragment : Fragment() {
             }
         })
         timePickerViewModel.load()
-        tvCommuteDuration.addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(s: Editable?) {
-                // Empty.
-            }
+        val gestureDetector = GestureDetector(requireContext(), object : GestureDetector.SimpleOnGestureListener() {
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // Empty.
-            }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val multiplier = if (count == 1) 1 else -1
-                vCircular
-                    .animate()
-                    .setInterpolator(AccelerateDecelerateInterpolator())
-                    .rotationBy(multiplier * 25f)
-                    .setDuration(500)
-                    .start()
-            }
+            override fun onDown(e: MotionEvent?) = true
 
+            override fun onScroll(
+                downEvent: MotionEvent,
+                moveEvent: MotionEvent,
+                distanceX: Float,
+                distanceY: Float
+            ): Boolean {
+
+                val radius = 300
+                val arc =
+                    Math.sqrt(
+                        Math.pow(
+                            (downEvent.x - moveEvent.x).toDouble(),
+                            2.0
+                        )
+                    )
+
+                val movingLeft = moveEvent.x < downEvent.x
+
+                val degrees =
+                    (Math.abs(arc) / radius) * if (movingLeft) -1 else 1
+
+
+                vCircular.rotation = vCircular.rotation + degrees.toFloat()
+
+                val time = Math.abs((vCircular.rotation % 360) / 360) * 99
+                tvCommuteDuration.text = time.toString().replace(".", "")
+
+                return true
+            }
         })
+        vCircular.setOnTouchListener { v, event ->
+            gestureDetector.onTouchEvent(event)
+        }
 
         bSetTime.setOnClickListener {
             timePickerViewModel.saveTime(tvCommuteDuration.text.toString().toInt())
@@ -67,8 +81,9 @@ class TimePickerFragment : Fragment() {
                 .setDuration(500)
                 .start()
             Navigation.findNavController(requireView())
-                .navigate(TimePickerFragmentDirections.actionTimePickerFragmentToHomeFragment())
+                .navigate(TimePickerFragmentDirections.actionTimePickerFragmentToArticleListFragment())
         }
         setHasOptionsMenu(true)
     }
+
 }
