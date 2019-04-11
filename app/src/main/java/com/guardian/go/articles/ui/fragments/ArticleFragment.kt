@@ -1,11 +1,13 @@
 package com.guardian.go.articles.ui.fragments
 
 import android.content.Context
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation.findNavController
 import com.guardian.go.R
@@ -81,7 +83,11 @@ class ArticleFragment : Fragment() {
             .replace("__BYLINE__", article.byline)
             .replace("__PUBDATE__", article.webPublicationDate.toString())
             .replace("__MAIN_MEDIA__", article.headerImage?.mediumUrl ?: "")
+            .replace("__NIGHT_MODE__", if (isNightMode) "night-mode" else "")
     }
+
+    private val isNightMode: Boolean get() =
+        resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
 }
 
 
