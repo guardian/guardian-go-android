@@ -7,7 +7,7 @@ import androidx.appcompat.app.AppCompatDelegate
 
 abstract class DarkModeActivity : AppCompatActivity() {
 
-    private val darkModeRepository: DarkModeRepository by lazy {
+    internal val darkModeRepository: DarkModeRepository by lazy {
         SharedPreferencesDarkModeRepository(PreferenceManager.getDefaultSharedPreferences(this))
     }
 

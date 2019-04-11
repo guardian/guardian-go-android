@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/ic_wb_sunny_white_24dp"
+        android:top="0dp"
+        android:left="0dp"
+        android:bottom="0dp"
+        android:width="12dp"
+        android:height="12dp"
+        />
+    <item
+        android:drawable="@drawable/ic_moon"
+        android:top="4dp"
+        android:left="8dp"
+        android:bottom="0dp"
+        android:right="0dp"
+        android:width="24dp"
+        android:height="24dp"
+        />
+</layer-list>

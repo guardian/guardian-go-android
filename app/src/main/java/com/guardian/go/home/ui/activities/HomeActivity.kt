@@ -21,7 +21,13 @@ class HomeActivity : DarkModeActivity(), NavController.OnDestinationChangedListe
         setSupportActionBar(tToolbar)
         navController = findNavController(this, R.id.nav_host_fragment)
         navController.addOnDestinationChangedListener(this)
-        WebView.setWebContentsDebuggingEnabled(true);
+        WebView.setWebContentsDebuggingEnabled(true)
+        val isNightMode = darkModeRepository.isDarkModeEnabled()
+        tvNightMode.setImageResource(if (isNightMode) R.drawable.ic_night_mode else R.drawable.ic_day_mode)
+        tvNightMode.setOnClickListener {
+            darkModeRepository.setDarkModeEnabled(!isNightMode)
+            recreate()
+        }
     }
 
     override fun onDestinationChanged(controller: NavController, destination: NavDestination, arguments: Bundle?) {
