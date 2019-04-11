@@ -81,7 +81,7 @@ class TimePickerFragment : Fragment() {
                 .setDuration(500)
                 .start()
             Navigation.findNavController(requireView())
-                .navigate(TimePickerFragmentDirections.actionTimePickerFragmentToHomeFragment())
+                .navigate(TimePickerFragmentDirections.actionTimePickerFragmentToArticleListFragment())
         }
         setHasOptionsMenu(true)
     }
