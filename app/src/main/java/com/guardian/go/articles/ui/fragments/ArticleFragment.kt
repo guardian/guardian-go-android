@@ -47,6 +47,7 @@ class ArticleFragment : Fragment() {
         wvArticle.settings.setDisplayZoomControls(false);
         wvArticle.settings.setSupportZoom(true);
         wvArticle.settings.setDefaultTextEncodingName("utf-8");
+        wvArticle.setVerticalScrollBarEnabled(false);
         wvArticle.visibility = View.VISIBLE
         wvArticle.loadData(createHtml(args.article), "text/html", "UTF-8")
         val jsInterface = WebAppInterface(requireContext()) {
@@ -67,7 +68,7 @@ class ArticleFragment : Fragment() {
         val templateDir = getTemplateRoot(requireContext()).path
         // wrapper
         return wrapperTemplate
-            .replace("__TEMPLATES_DIRECTORY__", "file:///android_asset/guardian-minutes-article-templates/build/")
+            .replace("__TEMPLATES_DIRECTORY__", "file:///android_asset/guardian-go-templates/build/")
             .replace("__ARTICLE_CONTAINER__", createArticleBody(article))
     }
 
@@ -90,14 +91,14 @@ enum class HtmlTemplate(private val templateName: String) {
     articleContainer("articleTemplateContainer.html");
 
     fun getTemplate(context: Context): String {
-        return context.assets.open("guardian-minutes-article-templates/build/$templateName").bufferedReader()
+        return context.assets.open("guardian-go-templates/build/$templateName").bufferedReader()
             .use { it.readText() }
     }
 }
 
 
 fun getTemplateRoot(context: Context): File {
-    val templatesDir = File(context.filesDir, "guardian-minutes-article-templates/build")
+    val templatesDir = File(context.filesDir, "guardian-go-templates/build")
     templatesDir.mkdir()
     return templatesDir
 }
