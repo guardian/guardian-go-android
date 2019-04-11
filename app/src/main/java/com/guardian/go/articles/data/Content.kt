@@ -7,5 +7,6 @@ import kotlinx.android.parcel.Parcelize
 data class Content(
     val title: String,
     val duration: String,
-    val url: String
+    val url: String,
+    val completed: Int
 ) : Parcelable

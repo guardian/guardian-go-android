@@ -9,9 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.guardian.go.R
+import com.guardian.go.articles.ui.WebAppInterface
 import com.guardian.go.articles.ui.viewmodels.ArticleViewModel
 import kotlinx.android.synthetic.main.fragment_article.*
 import java.io.File
+
 
 class ArticleFragment : Fragment() {
 
@@ -44,6 +46,7 @@ class ArticleFragment : Fragment() {
                     wvArticle.settings.setDefaultTextEncodingName("utf-8");
                     wvArticle.visibility = View.VISIBLE
                     wvArticle.loadData(createHtml(model.html), "text/html", "UTF-8")
+                    wvArticle.addJavascriptInterface(WebAppInterface(context), "Android")
                 }
             }
         })
