@@ -51,4 +51,6 @@ constructor(
     @param:JsonProperty("pillar") val pillar: Pillar? = null
     //@param:JsonProperty("atomsCSS") val atomsCSS: Array<String>? = null,
     //@param:JsonProperty("atomsJS") val atomsJS: Array<String>? = null
-)
+) {
+    val readingTime = body?.count { it == ' ' }?.div(200) ?: 0
+}

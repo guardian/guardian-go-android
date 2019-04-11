@@ -42,6 +42,7 @@ class CardViewHolder(
     private val tvTitle: TextView = itemView.tvTitle
     private val tvByline: TextView = itemView.tvByline
     private val ivMainImage: ImageView = itemView.ivMainImage
+    private val tvReadingTime: TextView = itemView.tvReadingTime
 
     private var currentCard: Card? = null
 
@@ -58,6 +59,8 @@ class CardViewHolder(
         Picasso.get()
             .load(card.mainImage?.mediumUrl)
             .into(ivMainImage)
+        val minutes = card.item.readingTime
+        tvReadingTime.text = itemView.context.resources.getQuantityString(R.plurals.minutes, minutes, minutes)
         currentCard = card
     }
 

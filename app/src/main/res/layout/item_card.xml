@@ -57,6 +57,21 @@
         app:layout_constraintTop_toBottomOf="@id/tvByline"
         tools:srcCompat="@tools:sample/backgrounds/scenic" />
 
+    <TextView
+        android:id="@+id/tvReadingTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#3db540"
+        android:textColor="@android:color/white"
+        android:fontFamily="@font/guardian_texsan_two_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/vBottomShadow"
+        android:textSize="14sp"
+        tools:text="5 mins"
+        android:includeFontPadding="true"
+        android:paddingStart="6dp"
+        android:paddingEnd="6dp"/>
+
     <View
         android:id="@+id/vBottomShadow"
         android:layout_width="match_parent"
