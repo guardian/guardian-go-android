@@ -15,7 +15,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/item_content"/>
+            tools:listitem="@layout/item_content"
+        android:clipToPadding="false"
+        android:padding="8dp"
+        android:background="#f6f6f6"/>
 
     <ProgressBar
             android:id="@+id/pbArticlesLoading"
