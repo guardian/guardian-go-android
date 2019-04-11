@@ -1,5 +1,8 @@
 package com.guardian.go.articles.ui.adapters
 
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,17 +47,32 @@ class CardViewHolder(
 
     fun bind(card: Card) {
         //itemView.setBackgroundColor(card.item.palette.elementBackground.parsed)
-        vTopBorder.setBackgroundColor(card.item.palette.linesColour.parsed)
+        vTopBorder.setBackgroundColor(card.item.style.ruleColour.parsed)
         tvTitle.text = formatTitle(card)
-        tvByline.text = card.byline?.title.orEmpty()
+        if (card.byline != null) {
+            tvByline.visibility = View.VISIBLE
+            tvByline.text = card.byline.title
+        } else {
+            tvByline.visibility = View.GONE
+        }
         Picasso.get()
             .load(card.mainImage?.mediumUrl)
             .into(ivMainImage)
         currentCard = card
     }
 
-    private fun formatTitle(card: Card): String {
-        return card.item.title
+    private fun formatTitle(card: Card): CharSequence {
+        return if (card.kicker != null) {
+            SpannableStringBuilder().append(
+                card.kicker.title + "\u00a0/ ",
+                ForegroundColorSpan(card.item.palette.kickerColour.parsed),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            ).append(
+                card.cardTitle ?: card.item.title
+            )
+        } else {
+            card.item.title
+        }
     }
 
     override fun onClick(v: View?) {

@@ -10,8 +10,8 @@ constructor(
     @param:JsonProperty("type") val contentType: String,
     @param:JsonProperty("links") val links: Links,
     @param:JsonProperty("title") val title: String,
-    @param:JsonProperty("webPublicationDate") val webPublicationDate: Date
-    //@JsonProperty("style") style: Style? = null
+    @param:JsonProperty("webPublicationDate") val webPublicationDate: Date,
+    @param:JsonProperty("style") val style: Style? = null
 )
 
 data class ArticleItem @JsonCreator
@@ -29,7 +29,7 @@ constructor(
     @param:JsonProperty("webPublicationDate") val webPublicationDate: Date,
     @param:JsonProperty("links") val links: Links,
     //@param:JsonProperty("metadata") val metadata: Metadata,
-    //@JsonProperty("style") style: Style,
+    @param:JsonProperty("style") val style: Style,
     @param:JsonProperty("palette") val palette: Palette,
     //@param:JsonProperty("footballContent") val footballContent: FootballMatch? = null,
     //@param:JsonProperty("cricketContent") val cricketContent: CricketContent? = null,
