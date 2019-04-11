@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.guardian.go.R
 import com.guardian.go.articles.ui.WebAppInterface
@@ -47,7 +48,10 @@ class ArticleFragment : Fragment() {
         wvArticle.settings.setDefaultTextEncodingName("utf-8");
         wvArticle.visibility = View.VISIBLE
         wvArticle.loadData(createHtml(args.article), "text/html", "UTF-8")
-        wvArticle.addJavascriptInterface(WebAppInterface(context), "Android")
+        val jsInterface = WebAppInterface(requireContext()) {
+            Toast.makeText(requireContext(), "Close clicked", Toast.LENGTH_SHORT).show()
+        }
+        wvArticle.addJavascriptInterface(jsInterface, "Android")
         /*
                 }
             }
