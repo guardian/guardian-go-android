@@ -32,12 +32,8 @@
             android:label="ArticleFragment"
             tools:layout="@layout/fragment_article">
         <argument
-                android:name="content"
-                app:argType="com.guardian.go.articles.data.Content"/>
-        <argument
             android:name="article"
-            app:argType="com.guardian.go.articles.ui.models.ArticleItem"
-            app:nullable="true" />
+            app:argType="com.guardian.go.articles.ui.models.ArticleItem" />
     </fragment>
     <action
             android:id="@+id/action_global_settingsFragment"

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.guardian.go.articles.data.Content
+import com.guardian.go.articles.ui.models.ArticleItem
 
 class ArticleViewModel : ViewModel() {
 
@@ -14,11 +15,11 @@ class ArticleViewModel : ViewModel() {
     /**
      * Load any data required for loading.
      */
-    fun loadContent(content: Content) {
+    fun loadContent(item: ArticleItem) {
         mutableModel.postValue(
             Model(
                 isLoading = false,
-                html = ""
+                html = item.body ?: ""
             )
         )
     }

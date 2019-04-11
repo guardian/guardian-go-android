@@ -19,9 +19,9 @@ class CardListFragment : Fragment() {
 
     private lateinit var viewModel: ArticleListViewModel
 
-    private val cardListAdapter: CardListAdapter = CardListAdapter { content ->
+    private val cardListAdapter: CardListAdapter = CardListAdapter { card ->
         findNavController(requireView()).navigate(
-            CardListFragmentDirections.actionArticleListFragmentToArticleFragment(TODO())
+            CardListFragmentDirections.actionArticleListFragmentToArticleFragment(card.item)
         )
     }
 
