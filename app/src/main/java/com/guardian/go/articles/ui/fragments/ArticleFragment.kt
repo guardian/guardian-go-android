@@ -84,7 +84,7 @@ class ArticleFragment : Fragment() {
             .replace("__BYLINE__", article.byline)
             .replace("__PUBDATE__", article.webPublicationDate.toString())
             .replace("__MAIN_MEDIA__", article.headerImage?.mediumUrl ?: "")
-            .replace("__NIGHT_MODE__", if (isNightMode) "night-mode" else "")
+            .replace("__NIGHT_MODE__", if (true) "night-mode" else "")
     }
 
     private val isNightMode: Boolean get() =
