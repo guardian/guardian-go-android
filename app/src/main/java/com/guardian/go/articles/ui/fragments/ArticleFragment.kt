@@ -81,7 +81,7 @@ class ArticleFragment : Fragment() {
             .replace("__STANDFIRST__", article.standFirst)
             .replace("__BYLINE__", article.byline)
             .replace("__PUBDATE__", article.webPublicationDate.toString())
-            .replace("__MAIN_MEDIA__", article.headerImage?.mediumUrl ?: "")
+            .replace("__MAIN_MEDIA__", article.headerImage?.mediumUrl ?: "https://i.guim.co.uk/img/media/1f846436f69d1b8ba1b467aaba5d5e9d0247c6c9/0_12_3400_2039/master/3400.jpg?w=750&amp;h=-&amp;q=95&amp;fit=bounds&amp;sig-ignores-params=true&amp;s=8f64d5cdc6b7e07b58830db5c1cfe58b")
     }
 }
 
