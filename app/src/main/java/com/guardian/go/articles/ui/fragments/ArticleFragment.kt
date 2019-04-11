@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation.findNavController
 import com.guardian.go.R
 import com.guardian.go.articles.ui.WebAppInterface
 import com.guardian.go.articles.ui.models.ArticleItem
@@ -49,7 +50,7 @@ class ArticleFragment : Fragment() {
         wvArticle.visibility = View.VISIBLE
         wvArticle.loadData(createHtml(args.article), "text/html", "UTF-8")
         val jsInterface = WebAppInterface(requireContext()) {
-            Toast.makeText(requireContext(), "Close clicked", Toast.LENGTH_SHORT).show()
+            findNavController(requireView()).popBackStack()
         }
         wvArticle.addJavascriptInterface(jsInterface, "Android")
         /*
